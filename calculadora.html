@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            background-color: #333;
+            color: white;
+            border-radius: 10px;
+            width: 300px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #display {
+            width: 100%;
+            height: 50px;
+            background-color: #222;
+            color: white;
+            font-size: 24px;
+            text-align: right;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            height: 50px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #555;
+            color: white;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #777;
+        }
+
+        button.operator {
+            background-color: #f39c12;
+        }
+
+        button.operator:hover {
+            background-color: #e67e22;
+        }
+
+        button.clear {
+            background-color: #e74c3c;
+        }
+
+        button.clear:hover {
+            background-color: #c0392b;
+        }
+
+        .result-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button onclick="appendCharacter('7')">7</button>
+            <button onclick="appendCharacter('8')">8</button>
+            <button onclick="appendCharacter('9')">9</button>
+            <button class="operator" onclick="appendCharacter('+')">+</button>
+
+            <button onclick="appendCharacter('4')">4</button>
+            <button onclick="appendCharacter('5')">5</button>
+            <button onclick="appendCharacter('6')">6</button>
+            <button class="operator" onclick="appendCharacter('-')">-</button>
+
+            <button onclick="appendCharacter('1')">1</button>
+            <button onclick="appendCharacter('2')">2</button>
+            <button onclick="appendCharacter('3')">3</button>
+            <button class="operator" onclick="appendCharacter('*')">*</button>
+
+            <button onclick="appendCharacter('0')">0</button>
+            <button onclick="appendCharacter('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button class="operator" onclick="appendCharacter('/')">/</button>
+        </div>
+        <div class="result-message" id="resultMessage"></div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        const resultMessage = document.getElementById('resultMessage');
+
+        function appendCharacter(char) {
+            resultMessage.textContent = ''; // Limpa mensagem anterior
+            display.value += char;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+            resultMessage.textContent = '';
+        }
+
+        function calculate() {
+            // Independentemente do cálculo, exibe a mensagem
+            resultMessage.textContent = 'Desculpe, outro usuário já tentou essa conta.';
+            display.value = ''; // Limpa o display após o "cálculo"
+        }
+    </script>
+</body>
+</html>
